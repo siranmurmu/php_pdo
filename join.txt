@@ -1,0 +1,193 @@
+SELECT * FROM `students` INNER JOIN schools ON students.school_id = schools.id;
+
+dd($district->count());
+
+$studentDetails = DB::table('students')
+                        ->join('schools','students.school_id', '=', 'schools.id')
+                        ->get();
+
+->where('students.district','==','district.id')
+
+SELECT * FROM `students` INNER JOIN schools ON students.school_id = schools.id;
+
+
+SELECT COUNT(students.id) FROM `students` INNER JOIN schools ON students.school_id = schools.id WHERE schools.district = 214;
+
+SELECT SUM(schools.intake) FROM `schools`;
+
+SELECT SUM(schools.intake) FROM `schools` WHERE schools.district = 214;
+
+$total_quota = School::where('schools.district', $district->id)
+            ->sum();
+            //count($total_quota);
+
+
+
+$districts = District::where('StateCode', 16)->get();
+
+
+
+        foreach($districts as $district){
+            $total_students = Student::join('schools', 'schools.id', '=', 'students.school_id')
+                ->where('schools.district', $district->id)
+                ->count();
+
+            dump($total_students);
+
+		$total_quota = School::where('district', $district->id)
+            ->sum('intake');
+            dd($total_quota);
+
+            
+        }
+
+
+
+
+
+
+
+
+
+foreach($districts as $district){
+            $total_students = Student::join('schools', 'schools.id', '=', 'students.school_id')
+                ->where('schools.district', $district->id)
+                ->count();
+
+            //dump($total_students);
+
+            $total_quota = School::where('district', $district->id)
+            ->sum('intake');
+            dd($total_quota);
+        }
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+class Foo
+{
+    protected $bar = 'Hello Siran!';
+
+    public function getBar()
+    {
+        return $this->bar;
+    }
+}
+
+$baz = new Foo();
+
+echo $baz->getBar();
+?> 
+
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+class GrandPa
+{
+    protected $name = 'Mark Henry';
+}
+
+class Daddy extends GrandPa
+{
+    function displayGrandPaName()
+    {
+        return $this->name;
+    }
+
+}
+
+$daddy = new Daddy;
+echo $daddy->displayGrandPaName();
+?>
+
+</body>
+</html>
+
+
+
+22/02/2023
+
+//echo $dsn;
+$pdo = new PDO($dsn);
+//echo $pdo;
+$stmt = $pdo->prepare("SELECT * FROM emp");
+$stmt->execute();
+$emps = $stmt->fetchAll(PDO::FETCH_ASSOC);
+dd($emps);
+
+
+
+<?php
+//connect to mysql database
+$db_name = "mysql:host=localhost;port=3306;dbname=phptest";
+$username = "root";
+$password = "adminadmin";
+
+
+$conn = new PDO($db_name,$username,$password);
+
+$sql = $conn->query("SELECT * FROM emp");
+
+$result = $sql->fetchAll(PDO::FETCH_NUM);
+if(count($result)){
+    foreach($result as $row){
+        echo "$row[1]";
+    }
+}else{
+    "No Record Found";
+}
+// echo "<pre>";
+// print_r($result);
+// echo "</pre>";
+
+// while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+    
+//     //echo $row['name'];
+//     //echo "{ $row[1] }";
+//     //echo "{$row->name}";
+//     // echo "<pre>";
+//     // print_r($row);
+//     // echo "</pre>";
+// }
+
+?>
+
+
+
+$servername = "localhost";
+$username = "root";
+$password = "adminadmin";
+$dbname = "testing";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if($conn->connect_error){
+    die("Connection Failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM students";
+$result = $conn->query($sql);
+
+if($result->num_rows > 0){
+    while($row = $result->fetch_assoc()){
+        echo "ID: {$row["name"]}";
+    }
+}else{
+    echo "No result found.";
+}
+$conn->close();
